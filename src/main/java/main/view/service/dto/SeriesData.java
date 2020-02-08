@@ -14,5 +14,6 @@ public class SeriesData {
     private XYSeries series;
     private double minZ;
     private double maxZ;
+    private double [][] data;
     private HashMap<Point2D, Double> zMap;
 }

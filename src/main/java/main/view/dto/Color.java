@@ -6,7 +6,6 @@ import lombok.Getter;
 public enum Color {
 
     WHITE(java.awt.Color.WHITE),
-    BLACK(java.awt.Color.BLACK),
     YELLOW(java.awt.Color.YELLOW),
     BLUE(java.awt.Color.BLUE),
     RED(java.awt.Color.RED),

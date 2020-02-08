@@ -53,7 +53,7 @@ public class GenerateReportFrame extends AbstractFrame {
                 saveData.setName(name.getText());
                 reportRepository.save(saveData);
             });
-            setBounds(name, 0.05f, 0.3f).under(save);
+            setBounds(name,  0.85f,0.1f).under(save);
         }
         loadReport(data);
         chart(data);

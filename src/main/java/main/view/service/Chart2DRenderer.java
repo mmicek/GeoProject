@@ -25,8 +25,10 @@ public class Chart2DRenderer extends XYLineAndShapeRenderer {
 
     @Override
     public Paint getItemPaint(int row, int column) {
-        if(column > this.series.getSeries().getItemCount())
+        if(row == 0)
             return Color.BLACK;
+        if(column > this.series.getSeries().getItemCount())
+            return Color.WHITE;
         double x = (double) series.getSeries().getX(column);
         double y = (double) series.getSeries().getY(column);
         return calculateColor(series.getZMap().get(new Point2D(x, y)));
