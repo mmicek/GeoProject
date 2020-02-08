@@ -1,0 +1,5 @@
+{"name":"Konf1","columns":["DT","BS","DEPTH"],"transformation":{"SUMA":"2*DT+BS/DEPTH"}}
+{"name":"TT","columns":["TT"],"transformation":{}}
+{"name":"T1","columns":[],"transformation":{}}
+{"name":"Blad","columns":[],"transformation":{"Nowa kolumna":"Wartosc (puste \u003d\u003d zwyk³a kolumna)"}}
+{"name":"TEST","columns":["DEPTH"],"transformation":{"2DEPTH":"2*DEPTH","4DEPTH":"2*2DEPTH"}}
