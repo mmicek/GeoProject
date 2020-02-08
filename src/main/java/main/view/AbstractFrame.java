@@ -1,9 +1,12 @@
 package main.view;
 
 import lombok.AllArgsConstructor;
+import main.repository.ErrorRepository;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.List;
 
 public abstract class AbstractFrame {
@@ -33,7 +36,7 @@ public abstract class AbstractFrame {
         } catch (Throwable ex){
             ex.printStackTrace();
             this.wasError = true;
-            error(ex.toString());
+            error(ex.toString(), ex);
         }
     }
 
@@ -109,6 +112,13 @@ public abstract class AbstractFrame {
         JOptionPane.showMessageDialog(new Frame(), message, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
+    protected void error(String message, Throwable ex){
+        StringWriter sw = new StringWriter();
+        ex.printStackTrace(new PrintWriter(sw));
+        ErrorRepository.getInstance().save(sw.toString());
+        error(message);
+    }
+
     protected  FramePosition setBounds(JComponent component, int x, int y, int width, int height){
         component.setBounds(x, y, width, height);
         panel.add(component);
@@ -122,11 +132,6 @@ public abstract class AbstractFrame {
     JPanel getPanel(){
         return panel;
     }
-
-
-
-
-
 
     @AllArgsConstructor
     public static class FramePosition{

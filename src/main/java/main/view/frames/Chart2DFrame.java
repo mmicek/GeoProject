@@ -47,8 +47,8 @@ public class Chart2DFrame extends AbstractFrame {
 
         if(this.configData.getZColumn() != null)
             ((XYPlot) chart.getPlot()).setRenderer(new Chart2DRenderer(
-                    this.configData.getMaxColor().getColor(),
                     this.configData.getMinColor().getColor(),
+                    this.configData.getMaxColor().getColor(),
                     seriesData));
 
         ((XYPlot) chart.getPlot()).getRenderer().setSeriesShape(0, getPointShape());
@@ -80,6 +80,8 @@ public class Chart2DFrame extends AbstractFrame {
                     minZ = z;
             }
         }
+        minZ = this.configData.getMinValue() != -1 ? this.configData.getMinValue() : minZ;
+        maxZ = this.configData.getMaxValue() != -1 ? this.configData.getMaxValue() : maxZ;
         return new SeriesData(series, minZ, maxZ, zMap);
     }
 }

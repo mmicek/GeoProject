@@ -1,9 +1,12 @@
 package main;
 
+import main.repository.ErrorRepository;
 import main.view.AbstractFrame;
 import main.view.MainFrame;
 import main.view.frames.StartFrame;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
 public class Main {
 
@@ -14,8 +17,7 @@ public class Main {
         AbstractFrame startFrame = getFrame();
         startFrame.recreatePanel();
         MainFrame.getMainFrame(startFrame).setScreen();
-        while(!toEnd) {}
-
+        while (!toEnd) {}
     }
 
     private static AbstractFrame getFrame() {

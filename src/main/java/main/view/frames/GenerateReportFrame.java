@@ -82,6 +82,8 @@ public class GenerateReportFrame extends AbstractFrame {
         zValue.setSelected(isGenerateZColumnChecked);
         JComboBox<String> zColumn = new JComboBox<>(data.getColumns().toArray(new String[0]));
 
+        JTextField minValue = new JTextField("-1");
+        JTextField maxValue = new JTextField("-1");
         JComboBox<Color> minColor = new JComboBox<>(Color.values());
         minColor.setSelectedItem(Color.BLUE);
         JComboBox<Color> maxColor = new JComboBox<>(Color.values());
@@ -96,6 +98,8 @@ public class GenerateReportFrame extends AbstractFrame {
                 config.setZColumn(Objects.requireNonNull(zColumn.getSelectedItem()).toString());
                 config.setMinColor((Color) minColor.getSelectedItem());
                 config.setMaxColor((Color) maxColor.getSelectedItem());
+                config.setMinValue(Double.valueOf(minValue.getText()));
+                config.setMaxValue(Double.valueOf(maxValue.getText()));
             } else
                 isGenerateZColumnChecked = false;
             MainFrame.getMainFrame().changeView(new Chart2DFrame(data, config, this));
@@ -117,12 +121,12 @@ public class GenerateReportFrame extends AbstractFrame {
         position.right(min, 40, 30);
         position = position.under(maxColor);
         position.right(max, 40, 30);
+        position.under(minValue).under(maxValue);
 
         ColorUtils.setTextBaldComponent(x);
         ColorUtils.setTextBaldComponent(y);
         ColorUtils.setTextBaldComponent(z);
         ColorUtils.setTextBaldComponent(min);
         ColorUtils.setTextBaldComponent(max);
-
     }
 }

@@ -33,6 +33,10 @@ public class Chart2DRenderer extends XYLineAndShapeRenderer {
     }
 
     private Color calculateColor(double z){
+        if(z > series.getMaxZ())
+            z = series.getMaxZ();
+        if(z < series.getMinZ())
+            z = series.getMinZ();
         double percent = (z - series.getMinZ())/(series.getMaxZ() - series.getMinZ());
         int red = (int) ((highColorRGB.getRed() - lowColorRGB.getRed()) * percent + lowColorRGB.getRed());
         int green = (int) ((highColorRGB.getGreen() - lowColorRGB.getGreen()) * percent + lowColorRGB.getGreen());

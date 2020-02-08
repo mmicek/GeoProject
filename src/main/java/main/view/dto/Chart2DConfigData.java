@@ -12,4 +12,6 @@ public class Chart2DConfigData {
     private String zColumn;
     private Color minColor;
     private Color maxColor;
+    private Double minValue;
+    private Double maxValue;
 }
