@@ -46,7 +46,11 @@ public class Chart2DFrame extends AbstractFrame {
                 true, true, false);
 
         if(this.configData.getZColumn() != null)
-            ((XYPlot) chart.getPlot()).setRenderer(new Chart2DRenderer(Color.RED, Color.BLUE, seriesData));
+            ((XYPlot) chart.getPlot()).setRenderer(new Chart2DRenderer(
+                    this.configData.getMaxColor().getColor(),
+                    this.configData.getMinColor().getColor(),
+                    seriesData));
+
         ((XYPlot) chart.getPlot()).getRenderer().setSeriesShape(0, getPointShape());
         ChartPanel cp = new ChartPanel(chart);
         setBounds(cp, 0.25f, 0.04f, 900, 900);
@@ -59,20 +63,22 @@ public class Chart2DFrame extends AbstractFrame {
     private SeriesData createDataSet(){
         double maxZ = Double.MIN_VALUE;
         double minZ = Double.MAX_VALUE;
-        XYSeries series = new XYSeries("Values");
+        XYSeries series = new XYSeries(this.configData.getZColumn() != null ? this.configData.getZColumn() : "Values");
         HashMap<Point2D, Double> zMap = new HashMap<>();
         for (Map<String, String> rows : this.report.getReport()){
             double x = Double.valueOf(rows.get(this.configData.getXColumn()));
             double y = Double.valueOf(rows.get(this.configData.getYColumn()));
-            double z = Double.valueOf(rows.get(this.configData.getZColumn()));
-
             series.add(x, y);
-            zMap.put(new Point2D(x, y), z);
 
-            if(z > maxZ)
-                maxZ = z;
-            if(z < minZ)
-                minZ = z;
+            if(this.configData.getZColumn() != null) {
+                double z = Double.valueOf(rows.get(this.configData.getZColumn()));
+                zMap.put(new Point2D(x, y), z);
+
+                if (z > maxZ)
+                    maxZ = z;
+                if (z < minZ)
+                    minZ = z;
+            }
         }
         return new SeriesData(series, minZ, maxZ, zMap);
     }

@@ -10,4 +10,6 @@ public class Chart2DConfigData {
     private String xColumn;
     private String yColumn;
     private String zColumn;
+    private Color minColor;
+    private Color maxColor;
 }
