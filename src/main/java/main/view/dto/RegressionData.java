@@ -7,16 +7,13 @@ import lombok.Setter;
 import org.apache.commons.math3.stat.regression.SimpleRegression;
 import org.jfree.data.xy.XYSeries;
 
-
+@Setter
 @Getter
 @NoArgsConstructor
 public class RegressionData {
 
     private SimpleRegression regression = new SimpleRegression();
-    @Setter
     private XYSeries regressionSeries;
-    @Setter
-    private Point2D left;
-    @Setter
-    private Point2D right;
+    private Double customSlope;
+    private Double customIntercept;
 }

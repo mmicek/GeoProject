@@ -14,4 +14,5 @@ public class Chart2DConfigData {
     private Color maxColor;
     private Double minValue;
     private Double maxValue;
+    private boolean calculateRegression;
 }

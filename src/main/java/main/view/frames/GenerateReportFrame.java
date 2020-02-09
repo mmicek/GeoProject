@@ -79,6 +79,8 @@ public class GenerateReportFrame extends AbstractFrame {
         JComboBox<String> xColumn = new JComboBox<>(data.getColumns().toArray(new String[0]));
         JComboBox<String> yColumn = new JComboBox<>(data.getColumns().toArray(new String[0]));
         JCheckBox zValue = new JCheckBox("Wykres kolumna Z");
+        JCheckBox calculateRegression = new JCheckBox("Wylicz regresje");
+        calculateRegression.setSelected(true);
         zValue.setSelected(isGenerateZColumnChecked);
         JComboBox<String> zColumn = new JComboBox<>(data.getColumns().toArray(new String[0]));
 
@@ -93,6 +95,7 @@ public class GenerateReportFrame extends AbstractFrame {
             Chart2DConfigData config = new Chart2DConfigData();
             config.setXColumn(Objects.requireNonNull(xColumn.getSelectedItem()).toString());
             config.setYColumn(Objects.requireNonNull(yColumn.getSelectedItem()).toString());
+            config.setCalculateRegression(calculateRegression.isSelected());
             if(zValue.isSelected()) {
                 isGenerateZColumnChecked = true;
                 config.setZColumn(Objects.requireNonNull(zColumn.getSelectedItem()).toString());
@@ -121,7 +124,7 @@ public class GenerateReportFrame extends AbstractFrame {
         position.right(min, 40, 30);
         position = position.under(maxColor);
         position.right(max, 40, 30);
-        position.under(minValue).under(maxValue);
+        position.under(minValue).under(maxValue).under(calculateRegression);
 
         ColorUtils.setTextBaldComponent(x);
         ColorUtils.setTextBaldComponent(y);
