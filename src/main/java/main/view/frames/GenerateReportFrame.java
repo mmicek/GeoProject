@@ -114,6 +114,7 @@ public class GenerateReportFrame extends AbstractFrame {
         JTextArea z = new JTextArea("Z");
         JTextArea min = new JTextArea("Min");
         JTextArea max = new JTextArea("Max");
+        JTextArea zValueDesc = new JTextArea("Zakres war. Z");
 
         position.right(x, 20 ,30);
         position = position.under(yColumn);
@@ -124,12 +125,13 @@ public class GenerateReportFrame extends AbstractFrame {
         position.right(min, 40, 30);
         position = position.under(maxColor);
         position.right(max, 40, 30);
-        position.under(minValue).under(maxValue).under(calculateRegression);
+        position.under(zValueDesc).under(minValue).under(maxValue).under(calculateRegression);
 
         ColorUtils.setTextBaldComponent(x);
         ColorUtils.setTextBaldComponent(y);
         ColorUtils.setTextBaldComponent(z);
         ColorUtils.setTextBaldComponent(min);
         ColorUtils.setTextBaldComponent(max);
+        ColorUtils.setTextBaldComponent(zValueDesc);
     }
 }

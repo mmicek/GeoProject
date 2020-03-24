@@ -12,23 +12,23 @@ import java.awt.*;
 
 public class Chart2DRenderer extends XYLineAndShapeRenderer {
 
-    private boolean calculateRegression;
     private ColorData lowColorRGB;
     private ColorData highColorRGB;
     private SeriesData series;
+    private Integer numberOfRegressions;
 
-    public Chart2DRenderer(boolean calculateRegression,Color low, Color high, SeriesData series){
+    public Chart2DRenderer(boolean calculateRegression,Color low, Color high, SeriesData series, Integer numberOfRegressions){
         super(false, true);
-        this.calculateRegression = calculateRegression;
         this.lowColorRGB = new ColorData(low.getRed(), low.getGreen(), low.getBlue());
         this.highColorRGB = new ColorData(high.getRed(), high.getGreen(), high.getBlue());
         this.series = series;
+        this.numberOfRegressions = numberOfRegressions;
     }
 
     @Override
     public Paint getItemPaint(int row, int column) {
-        if(row == 0 && calculateRegression)
-            return Color.BLACK;
+        if(row != this.numberOfRegressions)
+            return getSeriesPaint(row);
         if(column > this.series.getSeries().getItemCount())
             return Color.WHITE;
         double x = (double) series.getSeries().getX(column);
